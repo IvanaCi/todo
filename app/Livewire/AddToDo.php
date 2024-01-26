@@ -30,6 +30,7 @@ class AddToDo extends Component
             ]);
 
             session()->flash('status', 'Task added to the list.');
+            $this->dispatch('todo-created');
         
         }catch(Throwable $e){
             session()->flash('status', 'There was an issue processing your request. Please try again.');
