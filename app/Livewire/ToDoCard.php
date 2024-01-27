@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Todo;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Throwable;
@@ -30,9 +31,15 @@ class ToDoCard extends Component
         return view('livewire.to-do-card');
     }
 
-    public function toggleEditMode(){
-        $this->editMode = !$this->editMode;
+    public function enterEditMode(){
+        $this->editMode = true;
+    }
+
+    #[On('editor-exited')]
+    public function exitEditMode(){
+        $this->editMode = false;
         $this->refreshList();
+
     }
 
     public function update(){

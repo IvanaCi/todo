@@ -18,7 +18,6 @@
             <div  class="bg-white rounded p-4 w-2/5">
                 <h1 class="font-semibold text-center p-5">My To Do List</h1>
                 @livewire('to-do-list')
-                @livewire('add-to-do')
                 
             </div>
         </div>
