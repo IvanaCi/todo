@@ -3,6 +3,8 @@
     @if($editMode)
         @livewire('to-do-form')        
     @else
+
+
         <div class="grid grid-cols-[3fr_1fr]">
             <div class="grid grid-rows-2">
                 <div class="flex">
@@ -12,6 +14,10 @@
                 <div>
                     @if($todo->due_date)
                         <p class='italic'>Due on: <span>{{$todo->due_date}}</span></p>
+
+                        @if($todo->due_date<now())
+                            <div class="bg-red-700 text-white text-xs capitalize float-right p-1 mr-2 rounded">Overdue</div>
+                        @endif
                     @endif
                 </div>
             </div>

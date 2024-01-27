@@ -23,7 +23,7 @@ class ToDoList extends Component
  
     public function render()
     {
-        $todos = Todo::where('description', 'like', "%$this->searchString%")->orderBy('is_completed')->orderBy('due_date', 'Desc')->orderBy('created_at', 'Desc')->paginate(5);
+        $todos = Todo::where('description', 'like', "%$this->searchString%")->orderBy('is_completed')->orderByRaw('-`due_date` DESC')->orderBy('created_at', 'Desc')->paginate(5);
         return view('livewire.to-do-list', ['todos' => $todos]);
     }
 
