@@ -10,12 +10,17 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
-        <!-- Styles -->            
+        <!-- Styles -->
+        @vite('resources/css/app.css')           
     </head>
     <body class="antialiased">
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-            @livewire('add-to-do')
-            @livewire('to-do-list')
+            <div  class="bg-white rounded p-4 w-2/5">
+                <h1 class="font-semibold text-center p-5">My To Do List</h1>
+                @livewire('to-do-list')
+                @livewire('add-to-do')
+                
+            </div>
         </div>
     </body>
 </html>

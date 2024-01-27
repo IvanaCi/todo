@@ -1,4 +1,4 @@
-<div class="grid" id='{{$todo->id.'-card'}}'>
+<div class="grid grid-cols-2" id='{{$todo->id.'-card'}}'>
 
     @if($editMode)
         <div>
@@ -13,6 +13,8 @@
                 <input wire:model="dueDate" name="due-date" type="datetime-local"/>
                     @error('dueDate') <span class="error">{{ $message }}</span> @enderror
             </div>
+        </div>
+        <div>
             <button wire:click.prevent="update" type="button">Save</button>
             <button wire:click.prevent="toggleEditMode" type="button">Cancel</button>
         </div>

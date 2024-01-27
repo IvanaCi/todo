@@ -1,6 +1,8 @@
 <div>
+
+    <h2 class="font-semibold text-center p-5">New Task</h2>
     
-    <div>
+    <div class="p-3">
         <label for="task-description">Description</label>
         <input wire:model="taskDescription" name="task-description" type="text" placeholder="Enter your task" />
             @error('taskDescription') <span class="error">{{ $message }}</span> @enderror
