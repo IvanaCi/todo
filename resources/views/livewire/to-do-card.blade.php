@@ -13,9 +13,7 @@
                 </div>
                 <div class="flex items-center">
                     @if($todo->due_date)
-                        <p class='italic'>Due on: <span>{{$todo->due_date}}</span></p>
-
-                        @if($todo->due_date<now())
+                        @if(!$todo->is_completed && $todo->due_date<now())
                             <div class="bg-red-700 text-white text-xs capitalize float-right p-1 mr-2 rounded">Overdue</div>
                         @endif
                         <p class='italic'>Due on: <span>{{$todo->due_date}}</span></p>                       
