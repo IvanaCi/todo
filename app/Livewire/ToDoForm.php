@@ -19,12 +19,15 @@ class ToDoForm extends Component
     public $submitAction;
     public $submitLabel;
 
-    public function mount(Todo $todo = null){
-        $this->todo = $todo;
-        $this->taskDescription = $todo->description;
-        $this->dueDate = $todo->due_date;
-        $this->submitAction = is_null($this->todo) ? 'create' : 'update';
-        $this->submitLabel = is_null($this->todo) ? 'Add' : 'Save';
+    public function mount($todoId = null){
+        $this->submitAction = is_null($todoId) ? 'create' : 'update';
+        $this->submitLabel = is_null($todoId) ? 'Add' : 'Save';
+        if(!is_null($todoId)){
+            $this->todo = Todo::find($todoId);
+            $this->taskDescription =  $this->todo->description;
+            $this->dueDate =  $this->todo->due_date;
+            
+        }
     }
 
     public function render()

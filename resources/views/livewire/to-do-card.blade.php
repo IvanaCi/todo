@@ -1,7 +1,7 @@
 <div class="bg-sky-50 m-2 p-4 rounded" id='{{$todo->id.'-card'}}'>
 
     @if($editMode)
-        @livewire('to-do-form')        
+        @livewire('to-do-form', ['todoId'=>$todo->id])          
     @else
 
 
