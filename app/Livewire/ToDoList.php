@@ -4,33 +4,32 @@ namespace App\Livewire;
 
 use App\Models\Todo;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
-use Throwable;
+use Livewire\WithPagination;
 
 class ToDoList extends Component
 {
-    public $searchString = "";
+    use WithPagination;
 
-    #[On('list-changed')] 
+    public $searchString = "";
+    public $editingId = null;
+
+    #[Validate('required|min:3')] 
+    public $newDescription;
+    #[Validate('date|nullable')]
+    public $newDueDate;
+ 
     public function render()
     {
-        $todos = Todo::where('description', 'like', "%$this->searchString%")->orderBy('is_completed')->orderBy('due_date', 'Desc')->orderBy('created_at', 'Asc')->paginate(10);
+        $todos = Todo::where('description', 'like', "%$this->searchString%")->orderBy('is_completed')->orderBy('due_date', 'Desc')->orderBy('created_at', 'Asc')->paginate(5);
         return view('livewire.to-do-list', ['todos' => $todos]);
     }
 
-    public function delete($id){
-        try{
-            $todo = Todo::find($id);
-
-            $todo->delete();
-
-            $this->render();
-        
-        }catch(Throwable $e){
-            session()->flash('status', 'There was an issue processing your request. Please try again.');
-
-            report($e);
-        }
+    #[On('list-changed')]
+    public function refreshList(){
+        $this->resetPage();
+        $this->render();
     }
 
 }

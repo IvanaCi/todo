@@ -4,9 +4,14 @@
         <input wire:model.live='searchString' name='search-string'/>
     </div>
 
-    @foreach ($todos as $todo)
-        <div wire:key='{{$todo->id}}'>
-            @include('livewire.includes.to-do-card', $todo)
-        </div>
-    @endforeach
+    <div>
+        @foreach ($todos as $todo)
+            
+            @livewire(ToDoCard::class, ['todo' => $todo], key($todo->id))
+            
+        @endforeach
+
+    </div>
+
+    {{ $todos->links()}}
 </div>
